@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style>
+    :root {
+      --font-size: 12px;
+      --numeration-space: 50px;
+      --numeration-left: -30px;
+    }
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial;
+      font-size: var(--font-size);
+      margin: 0;
+    }
+
+    .text-base {
+      outline: none;
+      list-style: none;
+      counter-reset: line_number;
+      padding-left: var(--numeration-space);
+    }
+
+    .text-base > li {
+      counter-increment: line_number;
+      position: relative;
+      min-height: 13.6px;
+    }
+
+    .text-base > li::before {
+      content: counter(line_number) ". ";
+      color: red;
+      font-weight: bold;
+      position: absolute;
+      text-align: right;
+      left: var(--numeration-left);
+    }
+
+    .text-base > li:focus {
+      background-color: green;
+    }
+
+    .password-container, .loading-container, .change-container {
+      display: grid;
+      place-items: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <form class="password-container">
+    <div>
+      <label for="password">Type your password</label>
+      <input type="password" id="password" autocomplete="off" required>
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+
+  <form class="change-container" style="display: none">
+    <div>
+      <label for="password_new">Change your password</label>
+      <input type="password" id="password_new" autocomplete="off" required>
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+
+  <form class="loading-container" style="display: none">
+    <div>Loading...</div>
+  </form>
+
+  <ol contenteditable class="text-base" style="display: none"></ol>
+
+  <script type="text/javascript" src="js/neutralino.js"></script>
+  <script type="text/javascript" src="HashCrypto.js"></script>
+  <script type="text/javascript" src="assets.js"></script>
+</body>
+</html>
